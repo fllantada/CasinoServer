@@ -1,12 +1,14 @@
+import { CreatePlayerDto } from 'src/players/dto/create-player.dto';
+
 export class Player {
   private id: string;
   private name: string;
   private credits: number;
 
-  constructor(id: string, name: string, credits: number) {
-    this.id = id;
-    this.name = name;
-    this.credits = credits;
+  constructor(playerData: CreatePlayerDto) {
+    this.id = playerData.id;
+    this.name = playerData.name;
+    this.credits = playerData.credits;
   }
   getScore() {
     return this.credits;
