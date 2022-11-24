@@ -45,7 +45,6 @@ export class Machine {
       this.calculateReward();
     }
     if (this.reward > 0 && userCredits >= 60) {
-      console.log('tiro de nuevo');
       this.probability(0.6) && this.spin();
       this.calculateReward();
     }

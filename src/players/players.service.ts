@@ -18,7 +18,6 @@ export class PlayersService {
     return player;
   }
   find(id: string): Player {
-    console.log('desde find tengo en players:', this.players);
     return this.players.find((player: Player) => player.getData().id === id);
   }
 }

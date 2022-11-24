@@ -35,8 +35,6 @@ export class GameService {
     );
     player.updateScore(newCredits);
 
-    console.log('player', player.getData());
-
     //update player score
 
     return { player: player.getData(), playResults };
