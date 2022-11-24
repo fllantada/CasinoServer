@@ -13,6 +13,11 @@ async function bootstrap() {
     .addTag('Routes')
     .setContact('Francisco Javier Llantada', '', 'franciscollantada@gmail.com')
     .build();
+
+  //allow cors
+
+  app.enableCors();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('', app, document);
   const PORT = process.env.PORT || 3000;
