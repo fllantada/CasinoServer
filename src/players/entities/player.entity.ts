@@ -21,11 +21,7 @@ export class Player {
     };
   }
 
-  addCredits(score: number) {
-    this.credits += score;
-  }
-
-  removeCredits(score: number) {
-    this.credits -= score;
+  updateScore(score: number) {
+    this.credits = score;
   }
 }

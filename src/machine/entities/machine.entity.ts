@@ -1,4 +1,4 @@
-import { Reward, SpinResult, Symbol } from './types/machine.types';
+import { Reward, Symbol } from './types/machine.types';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -11,21 +11,23 @@ export class Machine {
     watermelon: 40,
   };
 
-  pullMachine(userCredits: number): SpinResult {
+  pullMachine(userCredits: number): {
+    newCredits: number;
+    playResults: string[];
+  } {
     // Create a new array of 3 random symbols
     this.slots = Array.from({ length: 3 }, () => this.getRandomSymbol());
 
+    console.log('slots', this.slots);
+
     // Calculate the reward
     const reward = this.calculateReward();
+    console.log('reward', reward);
 
     // Update the user's credits
-    const newUserCredits = userCredits + reward;
+    const newUserCredits = userCredits + reward - 1;
 
-    return {
-      slots: this.slots,
-      reward,
-      credits: newUserCredits,
-    };
+    return { newCredits: newUserCredits, playResults: this.slots };
   }
   private getRandomSymbol(): Symbol {
     const symbols = Object.keys(this.rewards);

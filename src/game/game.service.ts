@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateGameDto } from './dto/create-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
+
+import { MachineService } from 'src/machine/machine.service';
+import { PlayersService } from 'src/players/players.service';
 
 @Injectable()
 export class GameService {
@@ -9,23 +11,34 @@ export class GameService {
     private readonly playersService: PlayersService,
   ) {}
 
-  create(createGameDto: CreateGameDto) {
-    return 'This action adds a new game';
+  createNewGame(createGameDto: CreateGameDto) {
+    const { name, id } = createGameDto;
+
+    //player exist ?
+    const player = this.playersService.find(id);
+
+    if (!player) {
+      const credits = 10;
+      const newPlayer = this.playersService.create({ id, name, credits });
+      return newPlayer;
+    }
+    return player;
   }
 
-  findAll() {
-    return `This action returns all game`;
-  }
+  play(id: string) {
+    const player = this.playersService.find(id);
+    if (!player) return 'player not found';
+    const playerData = player.getData();
 
-  findOne(id: number) {
-    return `This action returns a #${id} game`;
-  }
+    const { newCredits, playResults } = this.machineService.spin(
+      playerData.credits,
+    );
+    player.updateScore(newCredits);
 
-  update(id: number, updateGameDto: UpdateGameDto) {
-    return `This action updates a #${id} game`;
-  }
+    console.log('player', player.getData());
 
-  remove(id: number) {
-    return `This action removes a #${id} game`;
+    //update player score
+
+    return { player: player.getData(), playResults };
   }
 }
