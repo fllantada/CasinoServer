@@ -12,7 +12,7 @@ async function bootstrap() {
     .addTag('Caino')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('documentation', app, document);
+  SwaggerModule.setup('', app, document);
   const PORT = process.env.PORT || 3000;
   await app.listen(PORT);
   console.log(`Application is running on http://localhost:${PORT}`);
