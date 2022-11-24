@@ -4,15 +4,12 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class Machine {
   private slots: string[];
-
-  private readonly rewards: Reward = {
+  private rewards: Reward = {
     cherry: 10,
     lemon: 20,
     orange: 30,
     watermelon: 40,
   };
-
-  constructor() {}
 
   pullMachine(userCredits: number): SpinResult {
     // Create a new array of 3 random symbols
