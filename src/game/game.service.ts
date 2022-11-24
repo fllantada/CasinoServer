@@ -51,7 +51,7 @@ export class GameService {
     const player = this.playersService.find(id);
     if (!player) return 'player not found';
 
-    player.updateScore(1000);
+    player.updateScore(10);
     return { player: player.getData() };
   }
 }
