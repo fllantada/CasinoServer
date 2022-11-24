@@ -47,4 +47,11 @@ export class GameService {
     const playerData = player.getData();
     return playerData;
   }
+  buy(id: string) {
+    const player = this.playersService.find(id);
+    if (!player) return 'player not found';
+
+    player.updateScore(1000);
+    return { player: player.getData() };
+  }
 }

@@ -33,4 +33,10 @@ export class GameController {
   checkout(@Param('id') id: string) {
     return this.gameService.checkout(id);
   }
+
+  @ApiTags('Buy')
+  @Get('/buy/:id')
+  buy(@Param('id') id: string) {
+    return this.gameService.buy(id);
+  }
 }
