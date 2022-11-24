@@ -6,10 +6,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('CAsino Backend')
-    .setDescription('Challenge to the casino backend')
+    .setTitle('Casino Backend')
+    .setDescription('Server part of casino Challenge')
+    .setExternalDoc('Repository', 'https://github.com/fllantada/CasinoServer')
     .setVersion('1.0')
-    .addTag('Caino')
+    .addTag('Routes')
+    .setContact('Francisco Javier Llantada', '', 'franciscollantada@gmail.com')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('', app, document);
